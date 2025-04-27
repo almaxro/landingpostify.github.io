@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Postify - Crea posts virales para redes sociales con inteligencia artificial y automatización" />
+    <meta name="keywords" content="redes sociales, contenido viral, automatización, IA, marketing digital" />
+    <title>Postify - Crea posts virales en solo un par de clicks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #0f0f0f;
+        --text: #f2f2f2;
+        --text-secondary: #bfbfbf;
+        --primary: rgba(255, 255, 255, 0.05);
+        --accent: #007aff;
+        --blur-bg: rgba(255, 255, 255, 0.05);
+        --gradient: linear-gradient(90deg, #7ab6ff, #b58eff, #ffaecf);
+        --text-gradient: linear-gradient(90deg, #f4f4f4, #b0b0b0);
+        --card-bg: #1a1a1a;
+        --shadow: 0 2px 5px rgba(0,0,0,0.3);
+        --radius: 1rem;
+      }
+
+      /* Estilos de texto con gradiente */
+      .gradient-text {
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* Nuevo estilo para degradado de texto en blanco y gris */
+      .text-gradient {
+        background: var(--text-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        background-color: var(--bg);
+        color: var(--text);
+        padding: 1rem;
+        padding-top: 6rem;
+        line-height: 1.5;
+      }
+
+      header {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        z-index: 1000;
+        background: var(--primary);
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: var(--radius);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .logo {
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 800;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .button {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        padding: 0.8rem 1.2rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 122, 255, 0.3);
+      }
+
+      .button-small {
+        padding: 0.5rem 1.2rem;
+      }
+
+      .button-with-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .menu-button {
+        width: 24px;
+        height: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+      }
+
+      .menu-button span {
+        background-color: white;
+        height: 3px;
+        border-radius: 2px;
+        width: 100%;
+        transition: all 0.3s ease;
+      }
+
+      .menu-button:hover span:nth-child(1) {
+        width: 70%;
+      }
+
+      .menu-button:hover span:nth-child(3) {
+        width: 70%;
+        margin-left: auto;
+      }
+
+      .hero {
+        padding: 2rem 1rem 4rem;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 5rem;
+        line-height: 1.2;
+        font-weight: 800;
+      }
+
+      .hero p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        margin-bottom: 5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .auth-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .auth-buttons .button {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .auth-buttons .comienza {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+      }
+
+      .auth-buttons .or {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        margin: 1rem 0;
+      }
+
+      .section {
+        padding: 3rem 1rem 4rem;
+      }
+
+      .section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 2.5rem;
+        text-align: center;
+        font-weight: 800;
+      }
+
+      .features {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .feature {
+        background: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease;
+      }
+
+      .feature:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature h3 {
+        margin: 0 0 0.75rem;
+        font-size: 1.1rem;
+      }
+
+      .feature p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+      }
+
+      .cta-section {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: var(--primary);
+        padding: 2.5rem 2rem;
+        border-radius: var(--radius);
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+      }
+
+      footer {
+        text-align: center;
+        padding: 3rem 1rem 2rem;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--accent);
+      }
+
+      /* Nuevos estilos para las secciones añadidas */
+      .screenshot-demo {
+        max-width: 800px;
+        margin: 0 auto 4rem;
+        text-align: center;
+      }
+
+      .screenshot-container {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1rem;
+        box-shadow: var(--shadow);
+        margin-top: 2rem;
+        overflow: hidden;
+      }
+
+      .screenshot-img {
+        width: 100%;
+        border-radius: calc(var(--radius) - 0.5rem);
+        transition: transform 0.3s ease;
+      }
+
+      .screenshot-container:hover .screenshot-img {
+        transform: scale(1.02);
+      }
+
+      .testimonials {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .testimonial {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+      }
+
+      .testimonial-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        gap: 1rem;
+      }
+
+      .testimonial-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        background: var(--gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+      }
+
+      .testimonial-name {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .testimonial-role {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .testimonial-text {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .testimonial-results {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .result-badge {
+        background: rgba(0, 122, 255, 0.1);
+        border-radius: 999px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+
+      .steps-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        counter-reset: step-counter;
+      }
+
+      .step {
+        position: relative;
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.5rem 1.5rem 1.5rem 4rem;
+        box-shadow: var(--shadow);
+      }
+
+      .step::before {
+        content: counter(step-counter);
+        counter-increment: step-counter;
+        position: absolute;
+        left: 1.5rem;
+        top: 1.5rem;
+        background: var(--gradient);
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      .step h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .step p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+      }
+
+      .stats-container {
+        max-width: 800px;
+        margin: 0 auto 3rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .stat-card {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: var(--shadow);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .platforms {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin: 2rem auto;
+        max-width: 800px;
+      }
+
+      .platform {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1rem;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease;
+      }
+
+      .platform:hover {
+        transform: translateY(-5px);
+      }
+
+      .platform svg {
+        width: 40px;
+        height: 40px;
+        fill: white;
+      }
+
+      .pricing {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .pricing-card {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pricing-card.popular::before {
+        content: "Popular";
+        position: absolute;
+        top: 1.5rem;
+        right: -2rem;
+        background: var(--accent);
+        color: white;
+        padding: 0.2rem 3rem;
+        transform: rotate(45deg);
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      .pricing-name {
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+
+      .pricing-price {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .pricing-period {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+      }
+
+      .pricing-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 2rem;
+        text-align: left;
+      }
+
+      .pricing-features li {
+        padding: 0.5rem 0;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .pricing-features li::before {
+        content: "✓";
+        color: var(--accent);
+        font-weight: bold;
+      }
+
+      .faq {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .faq-question {
+        font-weight: 600;
+        margin: 0 0 1rem;
+        font-size: 1.05rem;
+      }
+
+      .faq-answer {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        margin: 0;
+      }
+
+      .examples {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .examples-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .example-post {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+      }
+
+      .example-niche {
+        font-size: 0.85rem;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+      }
+
+      .example-text {
+        color: var(--text);
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+      }
+
+      .example-stats {
+        display: flex;
+        gap: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+      }
+
+      /* Responsive design */
+      @media (min-width: 768px) {
+        .features {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .testimonials-grid, 
+        .pricing-grid,
+        .examples-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .stats-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .steps {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .features {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .stats-container {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .testimonials-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .steps {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        /* Estilos para la navegación entre páginas */
+        .page-section {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        }
+
+        .page-section.active {
+         display: block;
+         opacity: 1;
+        }
+
+        .main-content {
+         opacity: 1;
+         transition: opacity 0.4s ease;
+        }
+
+        .main-content.hidden {
+        display: none;
+        opacity: 0;
+        }
+      }
+    </style>
+    <script>
+      // Configuración de partículas optimizada y carga condicional
+      document.addEventListener('DOMContentLoaded', function() {
+        // Verificar si el dispositivo es potente suficiente para efectos visuales pesados
+        const isHighEndDevice = () => {
+          const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+          const effectiveType = connection ? connection.effectiveType : 'unknown';
+          
+          // No mostrar efectos en conexiones lentas o poca memoria
+          if (effectiveType === '2g' || effectiveType === '3g') return false;
+          
+          // Verificar si es un dispositivo móvil
+          const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+          
+          // Si es móvil y no tiene alta velocidad, no mostrar efectos
+          if (isMobile && effectiveType !== '4g') return false;
+          
+          return true;
+        };
+        
+        // Solo cargar partículas en dispositivos potentes
+        if (isHighEndDevice()) {
+          // Crear el div para partículas
+          const particlesDiv = document.createElement('div');
+          particlesDiv.id = 'particles-js';
+          particlesDiv.style.position = 'fixed';
+          particlesDiv.style.top = '0';
+          particlesDiv.style.left = '0';
+          particlesDiv.style.width = '100%';
+          particlesDiv.style.height = '100%';
+          particlesDiv.style.zIndex = '-1';
+          document.body.prepend(particlesDiv);
+          
+          // Cargar script de partículas después de 2 segundos
+          setTimeout(() => {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js';
+            script.onload = function() {
+              particlesJS('particles-js', {
+                particles: {
+                  number: { value: 80, density: { enable: true, value_area: 800 } }, // Reducido a 40 partículas
+                  color: { value: "#ffffff" },
+                  opacity: { value: 0.08, random: true }, // Reducida opacidad
+                  size: { value: 3, random: true }, // Tamaño reducido
+                  line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.08, width: 1 },
+                  move: { enable: true, speed: 0.8, direction: "none", random: true, out_mode: "out" } // Velocidad reducida
+                }
+              });
+            };
+            document.body.appendChild(script);
+          });
+        }
+      });
+      </script>
+  </head>
+  <div id="particles-js" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+
+  <body>
+    <header>
+      <div class="logo">Postify</div>
+      <div class="header-right">
+        <button class="button button-small">Probar gratis</button>
+        <button class="menu-button" aria-label="Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1 class="text-gradient">
+        Crea posts virales<br>en solo un par de clicks
+      </h1>
+      <p>Automatiza la creación, planificación y publicación de tu contenido en redes sociales con IA, siguiendo una estrategia personalizada para crecer más rápido y alcanzar tus objetivos.</p>
+     <div class="auth-buttons">
+  <button class="button">Crea una cuenta gratis →</button>
+</div>
+    </section>
+
+    <!-- Nueva sección: Estadísticas impactantes -->
+    <section class="section">
+      <h2 class="text-gradient">
+        Resultados reales que puedes conseguir
+      </h2>
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-number">67%</div>
+          <div class="stat-label">Aumento promedio de engagement</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3.5x</div>
+          <div class="stat-label">Crecimiento más rápido de seguidores</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">85%</div>
+          <div class="stat-label">Reducción del tiempo de creación</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">+25</div>
+          <div class="stat-label">Mensajes de potenciales clientes en un día.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nueva sección: ¿Por que Postify? -->
+    <section class="section">
+      <h2 class="text-gradient">
+        ¿Por que usar Postify?
+      </h2>
+      <div class="features">
+        <div class="feature">
+          <h3 class="gradient-text">Generación inteligente de publicaciones</h3>
+          <p>Crea posts virales con IA en segundos. Solo escribe tu idea, elige un objetivo o selecciona el modo aleatorio y Postify se encarga del resto.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Estrategia basada en tu nicho y target</h3>
+          <p>Introduce tu nicho y objetivo, y obtén contenido alineado con tu público ideal para maximizar engagement y conversión.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Subida automática de publicaciones</h3>
+          <p>Planifica tu calendario de contenido con unos clics y deja que Postify publique por ti en los momentos de mayor impacto.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Ideas de contenido ilimitadas</h3>
+          <p>Recibe ideas basadas en tendencias actuales y tu público objetivo para nunca quedarte sin contenido relevante.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Mejora de perfil</h3>
+          <p>Recibe feedback sobre tu perfil actual y sugerencias para optimizarlo, aumentando tu visibilidad y conversión.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Análisis de rendimiento</h3>
+          <p>Obtén estadísticas detalladas sobre el rendimiento de tus publicaciones y aprende qué funciona mejor para tu audiencia.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Interfaz simple e intuitiva</h3>
+          <p>No necesitas experiencia técnica. Todo está diseñado para que cualquier persona pueda usarlo fácilmente desde el primer momento.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Ahorra horas de trabajo</h3>
+          <p>Sube un PDF con la información de tu negocio y deja que la IA se encargue de convertirlo en publicaciones potentes y personalizadas.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Crea contenido desde un PDF</h3>
+          <p>Postify genera contenido en segundos para optimizado para redes y SEO. Olvídate de pensar qué publicar cada día: nuestra IA lo hace por ti.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Precio incomparable</h3>
+          <p>Planes desde solo 16€/mes, ofreciendo más funcionalidades que muchas agencias y mentores que cobran más de 200€ al mes.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Soporte técnico siempre disponible</h3>
+          <p>Soporte técnico disponible 24/7 por correo y WhatsApp. Resolvemos tus dudas y problemas de forma rápida para que disfrutes de una experiencia fluida en todo momento.</p>
+        </div>
+        <div class="feature">
+          <h3 class="gradient-text">Gestión de múltiples cuentas</h3>
+          <p>Con Postify, puedes conectar y administrar múltiples cuentas por plataforma, todo desde un solo panel de control.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nueva sección: Proceso paso a paso -->
+    <section class="section">
+      <h2 class="text-gradient">
+        Cómo funciona Postify en 5 simples pasos
+      </h2>
+      <div class="steps-container">
+        <div class="steps">
+          <div class="step">
+            <h3 class="gradient-text">Regístrate y define tu nicho</h3>
+            <p>Crea tu cuenta y configura tu perfil indicando tu nicho y público objetivo para personalizar completamente la experiencia.</p>
+          </div>
+          <div class="step">
+            <h3 class="gradient-text">Elige un plan y accede a su prueba gratuita</h3>
+            <p>Selecciona el plan que más te convenga y disfruta de una prueba gratuita de 14 días para probar explorar todas las funcionalidades.</p>
+          </div>
+          <div class="step">
+            <h3 class="gradient-text">Conecta tu red social</h3>
+            <p>Selecciona la red social que vayas a usar con Postify y vincula tu cuenta.</p>
+          </div>
+          <div class="step">
+            <h3 class="gradient-text">Solicita y edita contenido</h3>
+            <p>Escribe brevemente lo que necesitas o selecciona un objetivo, elige algunas carácteristicas, y la IA generará 2 opciones de posts para que elijas y puedas editar si lo deseas.</p>
+          </div>
+          <div class="step">
+            <h3 class="gradient-text">Programa y publica</h3>
+            <p>Establece la fecha y hora de publicación o permite que la IA lo haga según su estrategia, y deja que Postify se ocupe del resto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nueva sección: Capturas de pantalla del producto -->
+<section class="section">
+  <h2 class="text-gradient">
+    Mira cómo funciona Postify en acción
+  </h2>
+  <div class="screenshot-demo">
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">
+      Genera publicaciones virales en segundos, programa tu contenido y automatiza tu presencia en redes sociales con nuestra intuitiva interfaz
+    </p>
+    
+    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 900px; margin: 0 auto;">
+      <!-- Primera captura de pantalla -->
+      <div class="screenshot-container">
+        <div style="background: var(--card-bg); padding: 1rem; border-radius: var(--radius) var(--radius) 0 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f57;"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #febc2e;"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #28c840;"></div>
+            <div style="margin-left: 1rem; color: var(--text-secondary); font-size: 0.8rem;">Generación de posts - Postify</div>
+          </div>
+        </div>
+        <div style="background: linear-gradient(to bottom, #1a1a1a, #262626); padding: 1.5rem; border-radius: 0 0 var(--radius) var(--radius); min-height: 300px; display: flex; flex-direction: column;">
+          <div style="background: #232323; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+            <div style="font-size: 0.9rem; color: var(--text); margin-bottom: 0.5rem;">¿Sobre qué quieres crear contenido hoy?</div>
+            <div style="display: flex; gap: 0.5rem;">
+              <div style="flex: 1; background: #2a2a2a; border-radius: 6px; padding: 0.75rem; color: var(--text-secondary); font-size: 0.9rem;">Beneficios del yoga para profesionales ocupados</div>
+              <button style="background: var(--accent); color: white; border: none; border-radius: 6px; padding: 0 1rem; font-weight: 600;">Generar</button>
+            </div>
+          </div>
+          
+          <div style="background: #232323; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+            <div style="font-size: 0.8rem; color: var(--accent); margin-bottom: 0.5rem;">Opción 1</div>
+            <div style="color: var(--text); font-size: 0.9rem; line-height: 1.5;">
+              <p><strong>El yoga no es un lujo, es una necesidad para los profesionales de hoy 🧘‍♂️</strong></p>
+              <p>Trabajas 10+ horas al día.<br>
+              Tu espalda está gritando.<br>
+              Tu mente nunca se apaga.<br>
+              Y "descansar" significa revisar emails en el sofá.</p>
+              <p>El 78% de los profesionales reporta que su productividad cae un 31% cuando el estrés se acumula.<br>
+              Pero los que practican yoga 15 minutos al día:</p>
+              <ul>
+                <li>Reducen en 45% los dolores de espalda</li>
+                <li>Mejoran su capacidad de concentración en un 38%</li>
+                <li>Duermen 72 minutos más (en promedio)</li>
+              </ul>
+              <p><strong>No necesitas 2 horas ni ropa cara.</strong><br>
+              Solo un espacio del tamaño de una esterilla y 15 minutos que te devolverán 2 horas de productividad real.</p>
+              <p>¿Lo has intentado? ¿Qué te ha funcionado a ti?</p>
+            </div>
+          </div>
+          
+          <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem;">
+            <button style="background: #2a2a2a; color: var(--text); border: none; border-radius: 999px; padding: 0.5rem 1rem; font-size: 0.8rem;">🔄 Regenerar</button>
+            <button style="background: #2a2a2a; color: var(--text); border: none; border-radius: 999px; padding: 0.5rem 1rem; font-size: 0.8rem;">✏️ Editar</button>
+            <button style="background: var(--accent); color: white; border: none; border-radius: 999px; padding: 0.5rem 1rem; font-size: 0.8rem;">📅 Programar</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Segunda captura de pantalla (calendario) -->
+      <div class="screenshot-container">
+        <div style="background: var(--card-bg); padding: 1rem; border-radius: var(--radius) var(--radius) 0 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f57;"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #febc2e;"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #28c840;"></div>
+            <div style="margin-left: 1rem; color: var(--text-secondary); font-size: 0.8rem;">Calendario de publicaciones - Postify</div>
+          </div>
+        </div>
+        <div style="background: linear-gradient(to bottom, #1a1a1a, #262626); padding: 1.5rem; border-radius: 0 0 var(--radius) var(--radius); min-height: 300px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div style="font-weight: 600; color: var(--text);">Mayo 2025</div>
+            <div style="display: flex; gap: 0.5rem;">
+              <button style="background: #2a2a2a; border: none; color: var(--text); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">&lt;</button>
+              <button style="background: #2a2a2a; border: none; color: var(--text); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">&gt;</button>
+            </div>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; text-align: center; margin-bottom: 0.5rem;">
+            <div style="color: var(--text-secondary); font-size: 0.8rem;">L</div>
+            <div style="color: var(--text-secondary); font-size: 0.8rem;">M</div>
+            <div style="color: var(--text-secondary); font-size: 0.8rem;">X</div>
+            <div style="color: var(--text-secondary); font-size: 0.8rem;">J</div>
+            <div style="color: var(--text-secondary); font-size: 0.8rem;">V</div>
+            <div style="color: var(--text-secondary); font-size: 0.8rem;">S</div>
+            <div style="color: var(--text-secondary); font-size: 0.8rem;">D</div>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem;">
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">29</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">30</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">1</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">2</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(0, 122, 255, 0.1); border-radius: 8px; color: var(--accent);">3</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">4</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">5</div>
+            
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">6</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(0, 122, 255, 0.1); border-radius: 8px; color: var(--accent);">7</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">8</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center; position: relative;">
+              9
+              <div style="position: absolute; bottom: 3px; width: 4px; height: 4px; background: var(--accent); border-radius: 50%;"></div>
+            </div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">10</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">11</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(0, 122, 255, 0.1); border-radius: 8px; color: var(--accent);">12</div>
+            
+            <!-- Más días... (simplificado) -->
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">13</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">14</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center; background: var(--accent); border-radius: 8px; color: white;">15</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">16</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">17</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">18</div>
+            <div style="height: 40px; display: flex; align-items: center; justify-content: center;">19</div>
+          </div>
+          
+          <div style="margin-top: 1.5rem;">
+            <div style="font-size: 0.9rem; color: var(--text); margin-bottom: 0.75rem;">Publicaciones programadas para hoy</div>
+            <div style="background: #232323; border-radius: 8px; padding: 0.75rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text);">El yoga no es un lujo...</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">LinkedIn • 15:30</div>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button style="background: transparent; border: none; color: var(--text-secondary); font-size: 0.8rem;">✏️</button>
+                <button style="background: transparent; border: none; color: var(--text-secondary); font-size: 0.8rem;">🗑️</button>
+              </div>
+            </div>
+            <div style="background: #232323; border-radius: 8px; padding: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text);">5 estrategias para el equilibrio...</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Instagram • 18:45</div>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button style="background: transparent; border: none; color: var(--text-secondary); font-size: 0.8rem;">✏️</button>
+                <button style="background: transparent; border: none; color: var(--text-secondary); font-size: 0.8rem;">🗑️</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Nueva sección: Plataformas compatibles -->
+    <section class="section">
+      <h2 class="text-gradient">
+        Compatible con todas tus redes sociales favoritas
+      </h2>
+     <div class="platforms">
+  <div class="platform">
+    <svg viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0z"/>
+      <path fill="currentColor" d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+    </svg>
+  </div>
+  <div class="platform">
+    <!-- Logo de X (antes Twitter) -->
+    <svg viewBox="0 0 24 24">
+      <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+  </div>
+  <div class="platform">
+    <!-- Logo de TikTok -->
+    <svg viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+    </svg>
+  </div>
+  <div class="platform">
+    <svg viewBox="0 0 24 24">
+      <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    </svg>
+  </div>
+  <div class="platform">
+    <svg viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </svg>
+  </div>
+<div class="platform">
+  <!-- Logo de Facebook -->
+  <svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+  </svg>
+</div>
+    </section>
+
+     <!-- Nueva sección: Ejemplos de posts generados -->
+     <section class="section">
+      <h2 class="text-gradient">
+        Ejemplos de posts de LinkedIn creados con Postify
+      </h2>
+      <div class="examples">
+        <div class="examples-grid">
+          <div class="example-post">
+            <div class="example-niche">Fitness & Nutrición</div>
+            <div class="example-text">
+              <p><strong>Tu marca de suplementos no necesita más sabor vainilla, sino más personalidad</strong><br><br>
+                Hoy, hay más de <strong>45.000 tiendas online</strong> de suplementos.<br>
+                Todas prometen lo mismo:<br>
+                + energía<br>
+                + masa muscular<br>
+                + salud intestinal<br><br>
+                
+                Spoiler:<br>
+                El consumidor ya no compra beneficios.<br>
+                Compra pertenencia. Historia. Filosofía.<br><br>
+                
+                💊 ¿Tu proteína tiene 20g por scoop? Bien.<br>
+                Pero también la de la competencia.<br>
+                ¿Entonces qué hará que te elijan a ti?<br><br>
+                
+                👉 El branding ya no es un logo bonito.<br>
+                Es una comunidad.<br>
+                Una narrativa.<br>
+                Una identidad que convierte al cliente en <strong>personaje principal</strong>.<br><br>
+                
+                Las marcas que van a dominar el ecommerce en este sector:<br>
+                No son las que tienen el mejor producto.<br>
+                Son las que hacen que sus clientes digan:<br>
+                <em>"Tomar esto forma parte de quién soy."</em><br><br>
+                
+                Y eso no se consigue con un buen packaging.<br><br>
+                
+                🧠 Se consigue entendiendo el <strong>nuevo juego del ecommerce</strong>:<br>
+                Donde las emociones mandan.<br>
+                Y el storytelling vende más que la proteína.<br><br>
+                
+                <strong>¿Tu tienda ya vende identidad… o solo polvo en un bote?</strong><br><br>
+                💬 Te leo.
+                </p>
+                
+            </div>
+          </div>
+          <div class="example-post">
+            <div class="example-niche">Marketing Digital</div>
+            <div class="example-text">
+              <p><strong>“No necesitas más ads. Necesitas que alguien diga: "Tío, tienes que ver esto".”</strong></p>
+
+              <p>Si tu estrategia se basa solo en pagar por atención, no tienes una marca.<br>
+              Tienes un cartel luminoso que nadie mira dos veces.</p>
+              
+              <p>Hoy, las marcas que están creciendo no son las que invierten más en ads.<br>
+              Son las que crean contenido que se envía por DM.<br>
+              El típico:<br>
+              “Bro, mira esto.”</p>
+              
+              <p>💡 <strong>¿La diferencia?</strong><br>
+              Una vende.<br>
+              La otra conecta y permanece.</p>
+              
+              <p>👉 El anuncio más potente que vi este mes no tenía logos gigantes ni claims agresivos.<br>
+              Era un cliente explicando por qué dejó de odiar los lunes gracias a un producto que ni siquiera mencionó hasta el final.<br>
+              Humano.<br>
+              Real.<br>
+              Irresistible.</p>
+              
+              <p>Porque cuando creas contenido que la gente quiere compartir,<br>
+              el algoritmo deja de ser tu enemigo.<br>
+              Y tu presupuesto deja de ser un pozo sin fondo.</p>
+              
+              <p>📉 Si tus campañas solo funcionan con presupuesto…<br>
+              📈 Es hora de replantearte qué estás comunicando.</p>
+              
+              <p><strong>Estás leyendo esto, ¿verdad?<br>
+              Eso significa que funciona.</strong></p>
+              
+              <p>💬 ¿Listo para crear contenido que la gente comparta sin que le pagues por hacerlo?</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nueva sección: Testimonios de usuarios -->
+    <section class="section">
+      <h2 class="text-gradient">
+        Lo que dicen nuestros usuarios
+      </h2>
+      <div class="testimonials">
+        <div class="testimonials-grid">
+          <div class="testimonial">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">LM</div>
+              <div>
+                <div class="testimonial-name">Laura Martínez</div>
+                <div class="testimonial-role">Influencer de Lifestyle</div>
+              </div>
+            </div>
+            <div class="testimonial-text">
+              "Postify ha transformado mi forma de trabajar. Lo que antes me tomaba horas, ahora lo hago en minutos. La calidad de los posts generados es impresionante y realmente conectan con mi audiencia."
+            </div>
+            <div class="testimonial-results">
+              <div class="result-badge">+5K seguidores en 30 días</div>
+              <div class="result-badge">+128% engagement</div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">CR</div>
+              <div>
+                <div class="testimonial-name">Carlos Rodríguez</div>
+                <div class="testimonial-role">Coach de negocios</div>
+              </div>
+            </div>
+            <div class="testimonial-text">
+              "Antes invertía 15 horas semanales creando contenido. Con Postify, ahora solo necesito 2 horas y los resultados son mucho mejores. Mi tasa de conversión ha aumentado un 45%."
+            </div>
+            <div class="testimonial-results">
+              <div class="result-badge">45% más conversiones</div>
+              <div class="result-badge">Ahorro de 52 horas/mes</div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">AG</div>
+              <div>
+                <div class="testimonial-name">Ana García</div>
+                <div class="testimonial-role">Emprendedora digital</div>
+              </div>
+            </div>
+            <div class="testimonial-text">
+              "La función de planificación automática es increíble. Configuro mi contenido para toda la semana en una hora y puedo concentrarme en otras áreas de mi negocio mientras Postify se encarga de publicar en los mejores momentos."
+            </div>
+            <div class="testimonial-results">
+              <div class="result-badge">+320% ROI en campañas</div>
+              <div class="result-badge">+8K nuevos seguidores</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nueva sección: Planes y precios -->
+    <section class="section">
+      <h2 class="text-gradient">
+        Planes adaptados a tus necesidades
+      </h2>
+      <div class="pricing">
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-name">Básico</div>
+            <div class="pricing-price">€16</div>
+            <div class="pricing-period">por mes</div>
+            <ul class="pricing-features">
+              <li>30 generaciones de posts al mes</li>
+              <li>2 redes sociales conectadas</li>
+              <li>5 cuentas conectadas en total</li>
+              <li>Planificador de un mes</li>
+              <li>Soporte por correo</li>
+            </ul>
+            <button class="button">Comenzar ahora</button>
+          </div>
+          <div class="pricing-card popular">
+            <div class="pricing-name">Profesional</div>
+            <div class="pricing-price">€39</div>
+            <div class="pricing-period">por mes</div>
+            <ul class="pricing-features">
+              <li>150 generaciones de posts al mes</li>
+              <li>6 redes sociales conectadas</li>
+              <li>25 cuentas conectadas en total</li>
+              <li>Planificador avanzado de 3 meses</li>
+              <li>Soporte por correo y Whatsapp</li>
+              <li>Análisis de rendimiento</li>
+              <li>Optimización de perfil</li>
+            </ul>
+            <button class="button">Comenzar ahora</button>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem; color: var(--text-secondary); font-size: 0.9rem;">
+          * Todos los planes incluyen 14 días de prueba gratuita. Sin compromiso.
+        </div>
+      </div>
+    </section>
+
+    <!-- Nueva sección: FAQ -->
+    <section class="section">
+      <h2 class="text-gradient">
+        Preguntas frecuentes
+      </h2>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-question">¿Cómo funciona exactamente Postify?</div>
+          <div class="faq-answer">Postify utiliza inteligencia artificial avanzada para analizar tu nicho, audiencia y las tendencias actuales. Con esta información, genera contenido altamente optimizado para maximizar el engagement y el crecimiento de tus redes sociales.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Necesito conocimientos técnicos para usar Postify?</div>
+          <div class="faq-answer">No, Postify está diseñado para ser intuitivo y fácil de usar. No necesitas conocimientos técnicos ni experiencia previa en marketing. Nuestra interfaz te guía a través de todo el proceso.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Puedo cancelar mi suscripción en cualquier momento?</div>
+          <div class="faq-answer">Sí, puedes cancelar tu suscripción cuando quieras sin compromisos ni penalizaciones. Si cancelas durante los primeros 14 días de prueba, no se te cobrará nada.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Con qué redes sociales es compatible Postify?</div>
+          <div class="faq-answer">Actualmente Postify es compatible con Instagram, X, Facebook, LinkedIn, TikTok y YouTube. Estamos constantemente agregando más plataformas según la demanda de nuestros usuarios.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Qué pasa con mis datos?</div>
+          <div class="faq-answer">Tu privacidad es nuestra prioridad. Todos los datos de usuarios se almacenan de forma encriptada y nunca compartimos información personal con terceros. Utilizamos tus datos únicamente para mejorar las recomendaciones personalizadas de contenido.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Puedo conectar varias cuentas de la misma red social?</div>
+          <div class="faq-answer">¡Absolutamente! Con el plan Profesional puedes gestionar múltiples cuentas de la misma plataforma.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Cuánto contenido puedo generar?</div>
+          <div class="faq-answer">Dependiendo de tu plan, tendrás un número específico de generaciones de contenido mensual. Cada vez que solicitas la creación de un post, se consume una generación. Las modificaciones posteriores o ajustes de un post ya generado no consumen créditos adicionales.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cta-section">
+        <h2 class="text-gradient">
+          ¿Listo para llevar tus redes sociales al siguiente nivel?
+        </h2>
+        <div class="auth-buttons">
+  <button class="button">Crea una cuenta gratis →</button>
+</div>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">
+          ¿Listo para liberar tiempo y escalar tus redes sociales al máximo con Postify?
+        </p>
+      </div>
+    </section>
+
+    <!-- Nueva sección: Distintivos de confianza -->
+    <section class="section" style="padding-bottom: 1rem;">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+          Únete a +10,000 creadores de contenido que confían en Postify
+        </p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+          <div style="color: var(--text-secondary); font-size: 0.9rem;">🔒 Pago 100% seguro</div>
+          <div style="color: var(--text-secondary); font-size: 0.9rem;">✅ Garantía de 14 días</div>
+          <div style="color: var(--text-secondary); font-size: 0.9rem;">⭐ 4.9/5 de valoración</div>
+          <div style="color: var(--text-secondary); font-size: 0.9rem;">🛟 Soporte prioritario</div>
+        </div>
+      </div>
+    </section>
+<!-- 1. Nueva sección: Más información -->
+<section id="more-info" class="section">
+  <h2 class="text-gradient">
+    Más información sobre Postify
+  </h2>
+  <div class="more-info-container" style="max-width: 800px; margin: 0 auto;">
+    <div class="feature" style="margin-bottom: 2rem;">
+      <h3 class="gradient-text">¿Qué es Postify exactamente?</h3>
+      <p>Postify es una plataforma integral de gestión de redes sociales impulsada por inteligencia artificial, diseñada específicamente para emprendedores , freelancers, y dueños de negocios que buscan maximizar su impacto en redes sociales con el mínimo esfuerzo debido a la falta de tiempo.</p>
+      <p style="margin-top: 1rem;">A diferencia de otras herramientas de programación de contenido, Postify no solo te permite planificar, sino que genera activamente contenido viral optimizado para tu nicho específico, analizando tendencias en tiempo real y comportamientos de audiencia.</p>
+    </div>
+    
+    <div class="feature" style="margin-bottom: 2rem;">
+      <h3 class="gradient-text">Nuestra tecnología</h3>
+      <p>Utilizamos modelos de inteligencia artificial de última generación, entrenados con centenas de miles de posts virales y adaptados para identificar patrones específicos de engagement. Nuestros algoritmos analizan constantemente:
+      <ul style="color: var(--text-secondary); padding-left: 1.5rem; margin-top: 0.5rem;">
+        <li>Características de posts virales en tu nicho</li>
+        <li>Horarios óptimos de publicación personalizados para tu audiencia</li>
+        <li>Tendencias emergentes relevantes para tu contenido</li>
+        <li>Estrategias de copywriting que generan mayor interacción</li>
+        <li>Hashtags de mayor impacto según tu sector y objetivos</li>
+      </ul>
+      </p>
+    </div>
+    
+    <div class="feature" style="margin-bottom: 2rem;">
+      <h3 class="gradient-text">Cómo optimizamos tu contenido</h3>
+      <p>Cada post generado por Postify, además de haber sido creado por una IA entrenada con entre 10k y 50k de posts (según la red social) ha sido cuidadosamente diseñado siguiendo principios avanzados de marketing digital y psicología social:
+      <ul style="color: var(--text-secondary); padding-left: 1.5rem; margin-top: 0.5rem;">
+        <li><strong>Gatillos emocionales:</strong> Identificamos qué emociones generan mayor engagement en tu audiencia específica.</li>
+        <li><strong>Estructura narrativa:</strong> Utilizamos formatos de storytelling probados que mantienen la atención del usuario.</li>
+        <li><strong>Llamadas a la acción:</strong> Implementamos CTAs sutiles pero efectivas que maximizan la interacción.</li>
+        <li><strong>Patrones de scaneo visual:</strong> Estructuramos el contenido para optimizar su lectura en dispositivos móviles.</li>
+        <li><strong>Psicología del color:</strong> Recomendamos combinaciones de colores para tus gráficos con mayor tasa de conversión.</li>
+      </ul>
+      </p>
+    </div>
+    
+    <div class="feature">
+      <h3 class="gradient-text">Casos de éxito detallados</h3>
+      <div style="margin-top: 1.5rem;">
+        <div style="margin-bottom: 2rem;">
+          <p><strong style="color: var(--text);">Tienda de suplementos naturales</strong></p>
+          <p style="color: var(--text-secondary);">Una pequeña empresa de suplementos implementó Postify para su estrategia de contenido en Instagram. Después de 3 meses:</p>
+          <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+            <li>Incrementó un 287% su engagement</li>
+            <li>Aumentó la cantidad de ventas directas desde sus redes sociales</li>
+            <li>Redujo un 70% el tiempo dedicado a crear contenido</li>
+          </ul>
+        </div>
+        
+        <div style="margin-bottom: 2rem;">
+          <p><strong style="color: var(--text);">Coach de finanzas personales</strong></p>
+          <p style="color: var(--text-secondary);">Un coach financiero con estancamiento en sus redes sociales implementó nuestra estrategia de contenido viral:</p>
+          <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+            <li>De 2,500 a 45,000 seguidores en 6 meses</li>
+            <li>Incremento de 830% en solicitudes de información sobre sus servicios</li>
+            <li>Más de 1.2 millones de impresiones al mes en linkedin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="cta-section" style="margin-top: 3rem;">
+      <h2 class="text-gradient">¿Tienes más preguntas?</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 2rem;">Nuestro equipo está listo para ayudarte a potenciar tu presencia en redes sociales y resolver cualquier duda adicional que puedas tener.</p>
+      <div class="auth-buttons">
+        <button class="button">Contactar con soporte</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Página de registro -->
+<section id="register-page" class="page-section">
+  <div class="container" style="max-width: 500px; margin: 0 auto; padding-top: 2rem;">
+    <h2 class="text-gradient" style="text-align: center; margin-bottom: 2rem;">
+      Únete a Postify
+    </h2>
+    
+    <div class="auth-options" style="display: flex; flex-direction: column; gap: 1rem;">
+      <button id="email-signup" class="button" style="background-color: var(--accent); display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 6L12 13L2 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Registrarse con correo
+      </button>
+      
+      <button id="google-signup" class="button" style="background-color: white; color: #333; display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" fill="white"/>
+          <path d="M20.64 12.2C20.64 11.57 20.58 10.95 20.45 10.36H12V13.85H16.84C16.64 14.97 15.97 15.92 14.96 16.53V18.73H17.96C19.66 17.15 20.64 14.91 20.64 12.2Z" fill="#4285F4"/>
+          <path d="M12 20.29C14.43 20.29 16.47 19.53 17.96 18.73L14.96 16.53C14.1 17.06 13.15 17.39 12 17.39C9.65 17.39 7.68 15.81 6.96 13.7H3.88V15.97C5.36 18.53 8.48 20.29 12 20.29Z" fill="#34A853"/>
+          <path d="M6.96 13.7C6.82 13.15 6.74 12.58 6.74 12C6.74 11.42 6.82 10.85 6.96 10.3V8.03H3.88C3.25 9.25 2.9 10.57 2.9 12C2.9 13.43 3.25 14.75 3.88 15.97L6.96 13.7Z" fill="#FBBC05"/>
+          <path d="M12 6.61C13.32 6.61 14.5 7.07 15.44 7.97L18.09 5.32C16.47 3.81 14.43 2.9 12 2.9C8.48 2.9 5.36 4.66 3.88 7.22L6.96 9.49C7.68 7.38 9.65 6.61 12 6.61Z" fill="#EA4335"/>
+        </svg>
+        Registrarse con Google
+      </button>
+      
+      <div style="text-align: center; margin: 1rem 0; color: var(--text-secondary);">
+        ¿Ya tienes cuenta?
+      </div>
+      
+      <button id="login-btn" class="button" style="background-color: transparent; border: 1px solid var(--accent); color: var(--accent);">
+        Iniciar sesión
+      </button>
+    </div>
+    
+    <!-- Formulario de registro con correo (inicialmente oculto) -->
+    <div id="email-form" style="display: none; margin-top: 2rem;">
+      <h3 class="gradient-text" style="margin-bottom: 1.5rem;">Registro con correo electrónico</h3>
+      
+      <form id="signup-form">
+        <div style="margin-bottom: 1.5rem;">
+          <label for="name" style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Nombre completo</label>
+          <input type="text" id="name" required style="width: 100%; padding: 0.75rem; border-radius: var(--radius); background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text);">
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+          <label for="email" style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Correo electrónico</label>
+          <input type="email" id="email" required style="width: 100%; padding: 0.75rem; border-radius: var(--radius); background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text);">
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+          <label for="password" style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Contraseña</label>
+          <input type="password" id="password" required style="width: 100%; padding: 0.75rem; border-radius: var(--radius); background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text);">
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: flex; align-items: flex-start; gap: 0.5rem; color: var(--text-secondary); cursor: pointer;">
+            <input type="checkbox" required style="margin-top: 0.2rem;">
+            <span style="font-size: 0.9rem;">Acepto los términos y condiciones y la política de privacidad</span>
+          </label>
+        </div>
+        
+        <button type="submit" class="button" style="width: 100%;">Crear cuenta</button>
+      </form>
+      
+      <button id="back-to-options" class="button" style="width: 100%; margin-top: 1rem; background-color: transparent; border: 1px solid var(--accent); color: var(--accent);">
+        Volver a opciones
+      </button>
+    </div>
+    
+    <!-- Formulario de inicio de sesión (inicialmente oculto) -->
+    <div id="login-form" style="display: none; margin-top: 2rem;">
+      <h3 class="gradient-text" style="margin-bottom: 1.5rem;">Iniciar sesión</h3>
+      
+      <form id="login-form-element">
+        <div style="margin-bottom: 1.5rem;">
+          <label for="login-email" style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Correo electrónico</label>
+          <input type="email" id="login-email" required style="width: 100%; padding: 0.75rem; border-radius: var(--radius); background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text);">
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+          <label for="login-password" style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Contraseña</label>
+          <input type="password" id="login-password" required style="width: 100%; padding: 0.75rem; border-radius: var(--radius); background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text);">
+        </div>
+        
+        <div style="text-align: right; margin-bottom: 1.5rem;">
+          <a href="#" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">¿Olvidaste tu contraseña?</a>
+        </div>
+        
+        <button type="submit" class="button" style="width: 100%;">Iniciar sesión</button>
+      </form>
+      
+      <button id="back-to-options-login" class="button" style="width: 100%; margin-top: 1rem; background-color: transparent; border: 1px solid var(--accent); color: var(--accent);">
+        Volver a opciones
+      </button>
+    </div>
+  </div>
+</section>
+<!-- 2. Ahora el script ya tiene el código para manejar el enlace a #more-info 
+en el menú móvil, así que no necesitas hacer modificaciones adicionales al script -->
+    <footer>
+      <p>© 2025 Postify. Todos los derechos reservados.</p>
+      <div class="footer-links">
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Contacto</a>
+        <a href="#">Blog</a>
+        <a href="#">Recursos</a>
+        <a href="#">Soporte</a>
+      </div>
+    </footer>
+
+    <script>
+      // Este es el código JavaScript unificado para Postify.
+      // Debes colocarlo al final de tu archivo HTML, justo antes de cerrar la etiqueta </body>
+      // Reemplaza TODOS los bloques <script> existentes con este único bloque de código
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        // Inicializar el fondo de partículas
+        initParticles();
+        
+        // Crear e insertar el menú móvil
+        initMobileMenu();
+        
+        // Configurar la navegación entre secciones
+        setupNavigation();
+        
+        // Configurar formularios de registro/login
+        setupForms();
+        
+        // Configurar botones CTA (llamadas a la acción)
+        setupCTAButtons();
+        
+        // Agregar IDs a las secciones para facilitar la navegación
+        setupSectionIDs();
+      });
+      
+      // 0. Función para inicializar las partículas
+      function initParticles() {
+        // Comprobar si la biblioteca particlesJS está disponible
+        if (typeof particlesJS !== 'undefined') {
+          particlesJS('particles-js', {
+            particles: {
+              number: { value: 80, density: { enable: true, value_area: 800 } },
+              color: { value: "#ffffff" },
+              opacity: { value: 0.1, random: true },
+              size: { value: 3, random: true },
+              line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.1, width: 1 },
+              move: { enable: true, speed: 1, direction: "none", random: true, out_mode: "out" }
+            }
+          });
+        }
+      }
+      
+      // 1. Función para inicializar el menú móvil
+      function initMobileMenu() {
+        // HTML del menú móvil
+        const menuHTML = `
+        <div id="mobile-menu" class="mobile-menu">
+          <div class="mobile-menu-container">
+            <div class="mobile-menu-header">
+              <div class="logo">Postify</div>
+              <button class="close-menu-button" aria-label="Cerrar menú">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <nav class="mobile-nav">
+              <a href="#stats-container" class="mobile-nav-item" data-section="main">Lo que puedes conseguir</a>
+              <a href="#features" class="mobile-nav-item" data-section="main">¿Por qué Postify?</a>
+              <a href="#how-it-works" class="mobile-nav-item" data-section="main">Postify en 5 simples pasos</a>
+              <a href="#platforms" class="mobile-nav-item" data-section="main">Plataformas compatibles</a>
+              <a href="#examples" class="mobile-nav-item" data-section="main">Ejemplos de posts</a>
+              <a href="#testimonials" class="mobile-nav-item" data-section="main">Testimonios de usuarios</a>
+              <a href="#pricing" class="mobile-nav-item" data-section="pricing">Planes y precios</a>
+              <a href="#faq" class="mobile-nav-item" data-section="main">Preguntas frecuentes</a>
+              <a href="#more-info" class="mobile-nav-item" data-section="more-info">Más información</a>
+            </nav>
+            <div class="mobile-menu-footer">
+              <button class="button register-button">Prueba gratis 14 días</button>
+            </div>
+          </div>
+        </div>
+        `;
+      
+        // Estilos CSS para el menú
+        const menuStyles = `
+        .mobile-menu {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          z-index: 2000;
+          display: flex;
+          justify-content: flex-end;
+          visibility: hidden;
+          opacity: 0;
+          transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+      
+        .mobile-menu.show {
+          visibility: visible;
+          opacity: 1;
+        }
+      
+        .mobile-menu-container {
+          width: 85%;
+          max-width: 350px;
+          height: 100%;
+          background: var(--bg);
+          border-left: 1px solid rgba(255, 255, 255, 0.1);
+          display: flex;
+          flex-direction: column;
+          transform: translateX(100%);
+          transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+      
+        .mobile-menu.show .mobile-menu-container {
+          transform: translateX(0);
+        }
+      
+        .mobile-menu-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.5rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      
+        .close-menu-button {
+          background: transparent;
+          border: none;
+          padding: 0.5rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      
+        .mobile-nav {
+          flex: 1;
+          overflow-y: auto;
+          padding: 1.5rem 0;
+        }
+      
+        .mobile-nav-item {
+          display: block;
+          padding: 1rem 1.5rem;
+          color: var(--text);
+          text-decoration: none;
+          font-weight: 600;
+          transition: color 0.2s ease, background-color 0.2s ease;
+          border-left: 3px solid transparent;
+        }
+      
+        .mobile-nav-item:hover, .mobile-nav-item:focus {
+          background-color: var(--primary);
+          color: var(--accent);
+          border-left: 3px solid var(--accent);
+        }
+      
+        .mobile-menu-footer {
+          padding: 1.5rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      
+        .mobile-menu-footer .button {
+          width: 100%;
+        }
+        `;
+      
+        // Insertar el HTML del menú en el DOM
+        document.body.insertAdjacentHTML('afterbegin', menuHTML);
+      
+        // Insertar los estilos del menú en el head
+        const styleElement = document.createElement('style');
+        styleElement.textContent = menuStyles;
+        document.head.appendChild(styleElement);
+      
+        // Configurar botones del menú móvil
+        const menuButton = document.querySelector('.menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.querySelector('.close-menu-button');
+      
+        // Abrir menú
+        menuButton.addEventListener('click', function() {
+          mobileMenu.classList.add('show');
+          document.body.style.overflow = 'hidden'; // Evitar scroll del body
+        });
+      
+        // Cerrar menú
+        closeMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.remove('show');
+          document.body.style.overflow = ''; // Restaurar scroll
+        });
+      
+        // Cerrar el menú si se hace clic fuera del contenedor
+        mobileMenu.addEventListener('click', function(e) {
+          if (e.target === mobileMenu) {
+            mobileMenu.classList.remove('show');
+            document.body.style.overflow = '';
+          }
+        });
+      
+        // Hacer que el logo funcione como enlace al inicio
+        document.querySelectorAll('.logo').forEach(logo => {
+          logo.style.cursor = 'pointer';
+          logo.addEventListener('click', function() {
+            showSection('main');
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+            
+            // Si el menú está abierto, ciérralo
+            if (mobileMenu.classList.contains('show')) {
+              mobileMenu.classList.remove('show');
+              document.body.style.overflow = '';
+            }
+          });
+        });
+      }
+      
+      // 2. Función para configurar la navegación entre secciones
+      function setupNavigation() {
+        // Variables para el sistema de navegación
+        let currentSection = 'main';
+        
+        // Configurar enlaces del menú móvil
+        document.querySelectorAll('.mobile-nav-item').forEach(link => {
+          const href = link.getAttribute('href');
+          const dataSection = link.getAttribute('data-section');
+          
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (dataSection === 'pricing' || dataSection === 'more-info') {
+              showSection(dataSection);
+            } else {
+              if (currentSection !== 'main') {
+                showSection('main');
+                setTimeout(() => {
+                  const targetElement = document.querySelector(href);
+                  if (targetElement) {
+                    targetElement.scrollIntoView({behavior: 'smooth'});
+                  }
+                }, 400);
+              } else {
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                  targetElement.scrollIntoView({behavior: 'smooth'});
+                }
+              }
+            }
+            
+            // Cerrar menú después de navegar
+            mobileMenu.classList.remove('show');
+            document.body.style.overflow = '';
+          });
+        });
+        
+        // Función para mostrar una sección específica (accesible globalmente)
+        window.showSection = function(sectionId) {
+          const mainContent = document.querySelectorAll('section:not(#pricing):not(#more-info):not(#register-page)');
+          const pricingSection = document.getElementById('pricing');
+          const moreInfoSection = document.getElementById('more-info');
+          const registerPage = document.getElementById('register-page');
+          
+          // Oculta el contenido principal si no estamos mostrando 'main'
+          if (sectionId !== 'main') {
+            mainContent.forEach(section => {
+              section.classList.add('page-section');
+              section.classList.remove('active');
+            });
+            
+            // Ocultar cualquier otra sección activa
+            document.querySelectorAll('.page-section.active').forEach(section => {
+              section.classList.remove('active');
+            });
+          } else {
+            mainContent.forEach(section => {
+              section.classList.remove('page-section');
+            });
+            
+            // Ocultar todas las secciones especiales
+            [pricingSection, moreInfoSection, registerPage].forEach(section => {
+              if (section) {
+                section.classList.add('page-section');
+                section.classList.remove('active');
+              }
+            });
+          }
+          
+          // Muestra la sección solicitada
+          if (sectionId === 'pricing' && pricingSection) {
+            pricingSection.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            currentSection = 'pricing';
+          } else if (sectionId === 'more-info' && moreInfoSection) {
+            moreInfoSection.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            currentSection = 'more-info';
+          } else if (sectionId === 'register') {
+            registerPage.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            currentSection = 'register';
+          } else {
+            // Mostrar contenido principal
+            mainContent.forEach(section => {
+              section.classList.remove('page-section');
+            });
+            currentSection = 'main';
+          }
+          
+          // Actualizar enlaces activos en el menú
+          document.querySelectorAll('.mobile-nav-item').forEach(item => {
+            const itemSection = item.getAttribute('data-section');
+            if (itemSection === sectionId) {
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
+          });
+        };
+        
+        // Función para mostrar la página de registro (accesible globalmente)
+        window.showRegisterPage = function() {
+          // Asegurarse de que la página de registro existe
+          const registerPage = document.getElementById('register-page');
+          if (!registerPage) {
+            console.error('La página de registro no existe');
+            return;
+          }
+          
+          // Mostrar la sección de registro
+          showSection('register');
+          
+          // Obtener elementos del formulario
+          const emailForm = document.getElementById('email-form');
+          const loginForm = document.getElementById('login-form');
+          const authOptions = document.querySelector('.auth-options');
+          
+          // Resetear a la vista de opciones
+          if (emailForm && loginForm && authOptions) {
+            emailForm.style.display = 'none';
+            loginForm.style.display = 'none';
+            authOptions.style.display = 'flex';
+          }
+        };
+      }
+      
+      // 3. Función para configurar formularios
+      function setupForms() {
+        // Obtener elementos del formulario de registro
+        const emailSignupBtn = document.getElementById('email-signup');
+        const googleSignupBtn = document.getElementById('google-signup');
+        const loginBtn = document.getElementById('login-btn');
+        const emailForm = document.getElementById('email-form');
+        const loginForm = document.getElementById('login-form');
+        const backToOptionsBtn = document.getElementById('back-to-options');
+        const backToOptionsLoginBtn = document.getElementById('back-to-options-login');
+        const authOptions = document.querySelector('.auth-options');
+        
+        // Configurar botones de registro/login si existen
+        if (emailSignupBtn) {
+          emailSignupBtn.addEventListener('click', function() {
+            authOptions.style.display = 'none';
+            emailForm.style.display = 'block';
+            loginForm.style.display = 'none';
+          });
+        }
+      
+        if (googleSignupBtn) {
+          googleSignupBtn.addEventListener('click', function() {
+            alert('Registro con Google (implementación pendiente)');
+          });
+        }
+      
+        if (loginBtn) {
+          loginBtn.addEventListener('click', function() {
+            authOptions.style.display = 'none';
+            emailForm.style.display = 'none';
+            loginForm.style.display = 'block';
+          });
+  }
+
+  if (backToOptionsBtn) {
+    backToOptionsBtn.addEventListener('click', function() {
+      emailForm.style.display = 'none';
+      authOptions.style.display = 'flex';
+    });
+  }
+
+  if (backToOptionsLoginBtn) {
+    backToOptionsLoginBtn.addEventListener('click', function() {
+      loginForm.style.display = 'none';
+      authOptions.style.display = 'flex';
+    });
+  }
+
+  // Gestionar envío de formularios
+  const signupForm = document.getElementById('signup-form');
+  if (signupForm) {
+    signupForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Validación básica de formulario (puedes expandir esto)
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      
+      let isValid = true;
+      
+      if (!nameInput.value.trim()) {
+        isValid = false;
+        nameInput.style.borderColor = 'red';
+      } else {
+        nameInput.style.borderColor = '';
+      }
+      
+      if (!emailInput.value.trim() || !emailInput.value.includes('@')) {
+        isValid = false;
+        emailInput.style.borderColor = 'red';
+      } else {
+        emailInput.style.borderColor = '';
+      }
+      
+      if (!passwordInput.value || passwordInput.value.length < 6) {
+        isValid = false;
+        passwordInput.style.borderColor = 'red';
+      } else {
+        passwordInput.style.borderColor = '';
+      }
+      
+      if (isValid) {
+        alert('¡Gracias por registrarte! (implementación pendiente)');
+        // En una implementación real, aquí enviarías los datos a tu backend
+      } else {
+        alert('Por favor, completa correctamente todos los campos.');
+      }
+    });
+  }
+
+  const loginFormElement = document.getElementById('login-form-element');
+  if (loginFormElement) {
+    loginFormElement.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Validación básica
+      const emailInput = document.getElementById('login-email');
+      const passwordInput = document.getElementById('login-password');
+      
+      let isValid = true;
+      
+      if (!emailInput.value.trim() || !emailInput.value.includes('@')) {
+        isValid = false;
+        emailInput.style.borderColor = 'red';
+      } else {
+        emailInput.style.borderColor = '';
+      }
+      
+      if (!passwordInput.value) {
+        isValid = false;
+        passwordInput.style.borderColor = 'red';
+      } else {
+        passwordInput.style.borderColor = '';
+      }
+      
+      if (isValid) {
+        alert('Inicio de sesión (implementación pendiente)');
+      } else {
+        alert('Por favor, introduce un email y contraseña válidos.');
+      }
+    });
+  }
+}
+
+// 4. Configurar botones CTA (Call to Action)
+function setupCTAButtons() {
+  // Modificar el texto de los botones CTA
+  const botonesPrincipales = document.querySelectorAll('.button:not(#email-signup):not(#google-signup):not(#login-btn):not(#back-to-options):not(#back-to-options-login)');
+  
+  botonesPrincipales.forEach(boton => {
+    // Texto actual del botón
+    const textoActual = boton.textContent.trim();
+    
+    // Modificar solo botones específicos de CTA
+    if (textoActual.includes('Probar ahora') || 
+        textoActual.includes('Probar gratis') ||
+        textoActual.includes('Crea una cuenta gratis') || 
+        textoActual.includes('Comenzar ahora')) {
+      
+      // Si no es un botón pequeño en el header
+      if (!boton.classList.contains('button-small')) {
+        boton.innerHTML = 'Prueba gratis 14 días <span style="font-size: 0.8em; opacity: 0.9;">→</span>';
+      } else {
+        boton.textContent = 'Prueba gratis 14 días';
+      }
+    }
+  });
+  
+  // Verificar que la página de registro existe
+  const registerPage = document.getElementById('register-page');
+  if (!registerPage) {
+    console.error("Error: El elemento con ID 'register-page' no existe en el documento");
+    return;  // No seguir si no hay página de registro
+  }
+  
+  // Configurar todos los botones CTA para abrir la página de registro
+  const botonesCTA = Array.from(document.querySelectorAll('.button')).filter(boton => {
+    const texto = boton.textContent.trim().toLowerCase();
+    
+    // Incluir solo botones principales CTA
+    const esCTA = texto.includes('prueba gratis') || 
+                   texto.includes('crea una cuenta') || 
+                   texto.includes('probar ahora') || 
+                   texto.includes('comenzar ahora');
+    
+    // Excluir botones específicos
+    const noEsEspecial = !boton.id || 
+                         !(boton.id === 'email-signup' || 
+                           boton.id === 'google-signup' || 
+                           boton.id === 'login-btn' || 
+                           boton.id === 'back-to-options' || 
+                           boton.id === 'back-to-options-login');
+    
+    const noEsDeFormulario = !boton.closest('form');
+    const noEsDeNavegacion = !boton.closest('.mobile-nav');
+    
+    return esCTA && noEsEspecial && noEsDeFormulario && noEsDeNavegacion;
+  });
+  
+  botonesCTA.forEach(boton => {
+    // En lugar de clonar, simplemente agregar el evento
+    boton.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Mostrar directamente la página de registro
+      const registerPage = document.getElementById('register-page');
+      if (registerPage) {
+        // Ocultar todas las demás secciones
+        document.querySelectorAll('section').forEach(section => {
+          if (section !== registerPage) {
+            section.classList.add('page-section');
+            section.classList.remove('active');
+          }
+        });
+        
+        // Mostrar la página de registro
+        registerPage.classList.add('page-section');  // Asegurarnos de que tenga la clase correcta
+        registerPage.classList.add('active');
+        
+        // Resetear los formularios
+        const emailForm = document.getElementById('email-form');
+        const loginForm = document.getElementById('login-form');
+        const authOptions = document.querySelector('.auth-options');
+        
+        if (emailForm && loginForm && authOptions) {
+          emailForm.style.display = 'none';
+          loginForm.style.display = 'none';
+          authOptions.style.display = 'flex';
+        }
+        
+        // Scroll al inicio
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      }
+    });
+  });
+}
+
+// 5. Función para configurar IDs de secciones
+function setupSectionIDs() {
+  // Obtener todas las secciones que necesitan IDs
+  const seccionesConH2 = Array.from(document.querySelectorAll('.section')).filter(section => {
+    return section.querySelector('h2');
+  });
+  
+  // Asignar IDs basados en texto de encabezados, pero de forma más confiable
+  seccionesConH2.forEach(section => {
+    // No sobrescribir IDs existentes
+    if (section.id) return;
+    
+    const textoH2 = section.querySelector('h2').textContent.trim().toLowerCase();
+    
+    // Mapeo más claro y específico
+    const mapeoDeSecciones = [
+      { textosClave: ['resultados', 'puedes conseguir', 'estadísticas'], id: 'stats-container' },
+      { textosClave: ['por que', 'por qué', 'funciones', 'beneficios'], id: 'features' },
+      { textosClave: ['cómo funciona', 'simples pasos', 'pasos'], id: 'how-it-works' },
+      { textosClave: ['compatib', 'redes sociales', 'plataformas'], id: 'platforms' },
+      { textosClave: ['ejemplos', 'posts creado'], id: 'examples' },
+      { textosClave: ['testimonio', 'dicen', 'usuarios'], id: 'testimonials' },
+      { textosClave: ['planes', 'precio'], id: 'pricing' },
+      { textosClave: ['pregunta', 'faq'], id: 'faq' },
+      { textosClave: ['más información', 'sobre postify'], id: 'more-info' }
+    ];
+    
+    // Buscar coincidencia en el mapeo
+    for (const mapeo of mapeoDeSecciones) {
+      if (mapeo.textosClave.some(texto => textoH2.includes(texto))) {
+        section.id = mapeo.id;
+        break;
+      }
+    }
+  });
+}
+</script>
+  </script>
+  </body>
+</html>
