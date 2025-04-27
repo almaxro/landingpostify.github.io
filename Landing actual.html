@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Postify - Crea posts virales para redes sociales con inteligencia artificial. Únete a la lista de espera." />
+    <meta name="keywords" content="redes sociales, contenido viral, automatización, IA, marketing digital, lista de espera" />
+    <title>Postify - Acceso exclusivo - Lista de espera</title>
+    
+    <!-- Preload de recursos críticos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+    
+    <style>
+      :root {
+        --bg: #0f0f0f;
+        --text: #f2f2f2;
+        --text-secondary: #d0d0d0;
+        --primary: rgba(255, 255, 255, 0.05);
+        --accent: #007aff;
+        --blur-bg: rgba(255, 255, 255, 0.05);
+        --gradient: linear-gradient(90deg, #7ab6ff, #b58eff, #ffaecf);
+        --text-gradient: linear-gradient(90deg, #f4f4f4, #b0b0b0);
+        --card-bg: #1a1a1a;
+        --shadow: 0 2px 5px rgba(0,0,0,0.3);
+        --radius: 1rem;
+      }
+
+      /* Reset básico */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Estilos de texto con gradiente */
+      .gradient-text {
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* Texto con degradado */
+      .text-gradient {
+        background: var(--text-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+        background-size: 200% 200%;
+        animation: gradientFlow 8s ease infinite;
+      }
+
+      @keyframes gradientFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        background-color: var(--bg);
+        color: var(--text);
+        padding: 0;
+        line-height: 1.5;
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        z-index: 1000;
+        background: var(--primary);
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: var(--radius);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .logo {
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 800;
+      }
+
+      .header-btn {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .header-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 122, 255, 0.3);
+      }
+
+      /* Contenedor principal */
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        padding-top: 60px; /* Espacio para el header */
+      }
+
+      /* Efecto de degradado en el fondo */
+      .bg-gradient {
+        position: absolute;
+        top: -300px;
+        left: -300px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, rgba(181, 142, 255, 0.05) 50%, transparent 70%);
+        z-index: -1;
+        opacity: 0.7;
+      }
+
+      .bg-gradient-2 {
+        position: absolute;
+        bottom: -300px;
+        right: -300px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 174, 207, 0.1) 0%, rgba(181, 142, 255, 0.05) 50%, transparent 70%);
+        z-index: -1;
+        opacity: 0.7;
+      }
+
+      /* Sección hero */
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 5vw, 4.2rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        font-weight: 800;
+        margin-bottom: 1.8rem;
+        width: 100%;
+        max-width: 800px;
+        padding: 0 0.5rem;
+        animation: fadeSlideUp 0.8s ease-out 0.2s both;
+      }
+
+      .hero p {
+        color: rgba(240, 240, 240, 0.9);
+        font-size: clamp(1rem, 2.2vw, 1.3rem);
+        line-height: 1.5;
+        margin-bottom: 2.5rem;
+        width: 100%;
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+        animation: fadeSlideUp 0.8s ease-out 0.4s both;
+      }
+
+      /* Animación para texto */
+      @keyframes fadeSlideUp {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Badge de acceso exclusivo */
+      .exclusive-badge {
+        background: linear-gradient(90deg, rgba(0,122,255,0.15), rgba(181,142,255,0.15));
+        border-radius: 999px;
+        padding: 0.5rem 1.4rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        animation: badgePulse 3s ease-in-out infinite;
+      }
+
+      @keyframes badgePulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .exclusive-badge span {
+        color: var(--text);
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 0.05em;
+      }
+
+      .exclusive-badge .dot {
+        width: 8px;
+        height: 8px;
+        background-color: #36ff5a;
+        border-radius: 50%;
+        animation: pulse 3s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.5);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Formulario de lista de espera */
+      .waitlist-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 500px;
+        animation: fadeSlideUp 0.8s ease-out 0.8s both;
+      }
+
+      .form-input {
+        background-color: var(--card-bg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius);
+        padding: 1.1rem 1.2rem;
+        font-size: 1.05rem;
+        color: var(--text);
+        width: 100%;
+        appearance: none;
+        min-height: 44px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .form-button {
+        background: linear-gradient(90deg, #007aff, #b58eff);
+        color: white;
+        border: none;
+        border-radius: var(--radius);
+        padding: 1.1rem 1.8rem;
+        font-size: 1.05rem;
+        letter-spacing: 0.02em;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        appearance: none;
+        -webkit-tap-highlight-color: transparent;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 120, 250, 0.3);
+      }
+
+      .form-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(0, 122, 255, 0.3);
+      }
+
+      .waitlist-note {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-top: 1rem;
+        text-align: center;
+        width: 100%;
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.8;
+        animation: fadeSlideUp 0.8s ease-out 1s both;
+      }
+
+      /* Footer */
+      footer {
+        padding: 3.5rem 1.5rem 2.5rem;
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        width: 100%;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.2s ease;
+        padding: 0.5rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+
+      .footer-links a:hover {
+        color: var(--accent);
+      }
+
+      footer > p {
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+
+      /* Desactivar animaciones en modo reducido de movimiento */
+      @media (prefers-reduced-motion: reduce) {
+        .hero h1,
+        .hero p,
+        .text-gradient,
+        .exclusive-badge,
+        .spots-counter,
+        .waitlist-form,
+        .waitlist-note {
+          animation: none;
+        }
+      }
+
+      /* MEDIA QUERIES OPTIMIZADAS */
+      
+      /* Móviles muy pequeños (hasta 359px) */
+      @media (max-width: 359px) {
+        .hero h1 {
+          font-size: 1.9rem;
+          padding: 0 0.2rem;
+          margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+          font-size: 0.95rem;
+          padding: 0 0.3rem;
+          margin-bottom: 2rem;
+        }
+        
+        .exclusive-badge {
+          padding: 0.3rem 0.8rem;
+          margin-bottom: 1.5rem;
+        }
+        
+        .exclusive-badge span {
+          font-size: 0.75rem;
+        }
+      
+        .form-input, .form-button {
+          padding: 0.9rem 1rem;
+          font-size: 0.95rem;
+        }
+        
+        .waitlist-note {
+          font-size: 0.8rem;
+          margin-top: 0.8rem;
+        }
+        
+        .footer-links {
+          flex-direction: column;
+          gap: 0.8rem;
+          align-items: center;
+        }
+      }
+      
+      /* Móviles pequeños a medianos (360px - 480px) */
+      @media (min-width: 360px) and (max-width: 480px) {
+        .hero h1 {
+          font-size: 2.2rem;
+          margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+          font-size: 1rem;
+          margin-bottom: 2rem;
+          padding: 0 0.5rem;
+        }
+        
+        header {
+          padding: 0.7rem 1rem;
+        }
+        
+        .logo {
+          font-size: 1.1rem;
+        }
+        
+        .header-btn {
+          font-size: 0.85rem;
+          padding: 0.5rem 1rem;
+        }
+        
+        .main {
+          padding-top: 50px; /* Ajuste para header más pequeño */
+        }
+        
+        
+        .form-input, .form-button {
+          padding: 0.9rem 1rem;
+          font-size: 1rem;
+        }
+      }
+      
+      /* Todos los móviles (hasta 767px) */
+      @media (max-width: 767px) {
+        .hero {
+          padding: 1rem;
+        }
+        
+        /* Formulario optimizado para móviles */
+        .waitlist-form {
+          gap: 0.8rem;
+        }
+        
+        /* Fondos decorativos más pequeños para rendimiento */
+        .bg-gradient, .bg-gradient-2 {
+          width: 350px;
+          height: 350px;
+          opacity: 0.4;
+        }
+        
+        /* Optimizar footer para móviles */
+        footer {
+          padding: 2rem 1rem;
+        }
+        
+        .footer-links {
+          gap: 1rem;
+        }
+      }
+      
+      /* Tabletas (768px - 1023px) */
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .hero h1 {
+          font-size: 3rem;
+        }
+        
+        .waitlist-form {
+          flex-direction: row;
+        }
+        
+        .form-button {
+          width: auto;
+          white-space: nowrap;
+        }
+        
+        /* Mejora del tamaño de contenedor */
+        .hero, footer {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+      }
+      
+      /* Ordenadores (1024px y superior) */
+      @media (min-width: 1024px) {
+        .hero h1 {
+          font-size: 3.5rem;
+        }
+        
+        .waitlist-form {
+          flex-direction: row;
+        }
+        
+        .form-button {
+          width: auto;
+          white-space: nowrap;
+        }
+      }
+      
+      /* Pantallas grandes (1440px y superior) */
+      @media (min-width: 1440px) {
+        .hero h1 {
+          font-size: 4rem;
+        }
+        
+        .hero {
+          max-width: 900px;
+        }
+      }
+      
+      #particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  background-color: transparent;
+  pointer-events: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <div class="bg-gradient"></div>
+    <div class="bg-gradient-2"></div>
+    
+    <header>
+      <div class="logo">Postify</div>
+      <button class="header-btn">Lista de espera</button>
+    </header>
+    
+    <main class="main">
+      <section class="hero">
+        <div class="exclusive-badge">
+          <div class="dot"></div>
+          <span>PRÓXIMAMENTE...</span>
+        </div>
+        
+        <h1 class="text-gradient">Crea, Automatiza y Optimiza tu Contenido en Redes Sociales con IA</h1>
+        
+        <p>Mejora tu engagement, aumenta seguidores y ahorra tiempo en la gestión de tus redes sociales.</p>
+        
+        <form class="waitlist-form">
+          <input type="email" class="form-input" placeholder="Tu correo electrónico" required>
+          <button type="submit" class="form-button">Reservar mi lugar</button>
+        </form>
+        
+        <p class="waitlist-note">¡Plazas limitadas para la primera versión! Regístrate ahora y asegura tu acceso antes de que se agoten. 
+          <br></br>
+          <br> Te avisaremos cuando sea tu turno. </br></p>
+      </section>
+    </main>
+    
+    <footer>
+      <p>© 2025 Postify. Todos los derechos reservados.</p>
+      <div class="footer-links">
+        <a href="#">Aviso legal</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Cookies</a>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Detectar si es móvil para optimizar rendimiento
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Contador de plazas disponibles animado
+        const initSpots = 100;
+        const takenSpots = 89;
+        const availableSpots = initSpots - takenSpots;
+        
+        const spotsElement = document.getElementById('available-spots');
+        if (spotsElement) {
+          spotsElement.textContent = availableSpots;
+          
+          // Intervalo más largo para móviles para ahorrar recursos
+          const interval = isMobile ? 30000 : 15000;
+          
+          // Reducir aleatoriamente los lugares disponibles
+          window.spotsUpdateInterval = setInterval(() => {
+            const currentSpots = parseInt(spotsElement.textContent);
+            if (currentSpots > 1) {
+              const randomChance = Math.random();
+              if (randomChance > 0.8) {
+                spotsElement.textContent = currentSpots - 1;
+                
+                // Animar el cambio
+                spotsElement.style.transition = 'all 0.3s ease';
+                spotsElement.style.color = '#ff3b30';
+                spotsElement.style.transform = 'scale(1.2)';
+                
+                // Actualizar barra de progreso
+                const progress = document.querySelector('.spots-progress');
+                const newWidth = ((initSpots - (currentSpots - 1)) / initSpots) * 100;
+                progress.style.width = newWidth + '%';
+                
+                setTimeout(() => {
+                  spotsElement.style.color = '#ffcc00';
+                  spotsElement.style.transform = '';
+                }, 1000);
+              }
+            }
+          }, interval);
+        }
+        
+        // Hacer scroll hacia el formulario al hacer clic en el botón del header
+        const headerBtn = document.querySelector('.header-btn');
+        const waitlistForm = document.querySelector('.waitlist-form');
+        
+        if (headerBtn && waitlistForm) {
+          headerBtn.addEventListener('click', function() {
+            waitlistForm.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+              // Enfocar el input después del scroll
+              const emailInput = waitlistForm.querySelector('input[type="email"]');
+              if (emailInput) emailInput.focus();
+            }, 800);
+          });
+        }
+        
+        // Manejar envío del formulario
+// Manejar envío del formulario
+const form = document.querySelector('.waitlist-form');
+if (form) {
+  form.addEventListener('submit', function(e) {
+    // Prevenir el comportamiento predeterminado (recargar la página)
+    e.preventDefault();
+    
+    const emailInput = form.querySelector('input[type="email"]');
+    const emailValue = emailInput ? emailInput.value.trim() : '';
+    
+    if (emailValue && isValidEmail(emailValue)) {
+      // Mostrar notificación de éxito
+      showNotification('¡Genial! Te has unido a la lista de espera', 'Te notificaremos cuando sea tu turno para acceder a Postify.');
+      
+      // Limpiar el formulario
+      if (emailInput) emailInput.value = '';
+      
+      // Simulación de reducción de plazas disponibles
+      const spotsElement = document.getElementById('available-spots');
+      if (spotsElement) {
+        const currentSpots = parseInt(spotsElement.textContent);
+        if (currentSpots > 1) {
+          spotsElement.textContent = currentSpots - 1;
+          
+          // Actualizar barra de progreso
+          const progress = document.querySelector('.spots-progress');
+          const initSpots = 100;
+          const newWidth = ((initSpots - (currentSpots - 1)) / initSpots) * 100;
+          progress.style.width = newWidth + '%';
+        }
+      }
+    } else {
+      // Mostrar notificación de error
+      showNotification('Error', 'Por favor, introduce un email válido.', 'error');
+    }
+    
+    // Asegurar que no se envíe el formulario
+    return false;
+  });
+}
+        
+        // Función para validar email
+        function isValidEmail(email) {
+          const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return regex.test(email);
+        }
+        
+        // Función para mostrar notificaciones centradas optimizadas para móviles
+        function showNotification(title, message, type = 'success') {
+          // Detectar si es móvil para ajustes específicos
+          const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+          
+          // Crear el contenedor principal
+          const notification = document.createElement('div');
+          notification.style.position = 'fixed';
+          notification.style.top = '50%';
+          notification.style.left = '50%';
+          notification.style.transform = 'translate(-50%, -50%) scale(0.9)';
+          notification.style.opacity = '0';
+          notification.style.width = isMobile ? '85%' : '90%';
+          notification.style.maxWidth = '360px';
+          notification.style.backgroundColor = '#1a1a1a';
+          notification.style.borderRadius = '12px';
+          notification.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.5)';
+          notification.style.padding = isMobile ? '20px' : '24px';
+          notification.style.textAlign = 'center';
+          notification.style.zIndex = '9999';
+          notification.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          notification.style.border = type === 'success' ? '1px solid rgba(0, 122, 255, 0.3)' : '1px solid rgba(255, 59, 48, 0.3)';
+          
+          // Agregar -webkit-transform para compatibilidad con Safari móvil
+          notification.style.webkitTransform = 'translate(-50%, -50%) scale(0.9)';
+          notification.style.webkitTransition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          
+          // Tamaño de icono adaptado para móviles
+          const iconSize = isMobile ? '50px' : '60px';
+          const iconSvgSize = isMobile ? '24px' : '28px';
+          
+          // Crear icono
+          const icon = document.createElement('div');
+          icon.style.width = iconSize;
+          icon.style.height = iconSize;
+          icon.style.borderRadius = '50%';
+          icon.style.background = type === 'success' ? 'linear-gradient(45deg, #007aff, #5856d6)' : 'linear-gradient(45deg, #ff3b30, #ff9500)';
+          icon.style.margin = '0 auto 16px';
+          icon.style.display = 'flex';
+          icon.style.alignItems = 'center';
+          icon.style.justifyContent = 'center';
+          icon.style.boxShadow = type === 'success' ? '0 8px 20px rgba(0, 122, 255, 0.3)' : '0 8px 20px rgba(255, 59, 48, 0.3)';
+          
+          // Contenido del icono
+          if (type === 'success') {
+  icon.innerHTML = `
+    <svg width="${iconSvgSize}" height="${iconSvgSize}" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6L9 17L4 12"></path>
+    </svg>
+  `;
+} else {
+  icon.innerHTML = `
+    <svg width="${iconSvgSize}" height="${iconSvgSize}" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  `;
+}
+          
+          // Titulo con tamaño adaptado
+          const titleEl = document.createElement('h3');
+          titleEl.textContent = title;
+          titleEl.style.color = '#ffffff';
+          titleEl.style.margin = '0 0 8px';
+          titleEl.style.fontSize = isMobile ? '18px' : '20px';
+          titleEl.style.fontWeight = '700';
+          titleEl.style.lineHeight = '1.3';
+          titleEl.style.padding = '0 10px';
+          
+          // Mensaje con tamaño adaptado
+          const messageEl = document.createElement('p');
+          messageEl.textContent = message;
+          messageEl.style.color = '#d0d0d0';
+          messageEl.style.margin = '0';
+          messageEl.style.fontSize = isMobile ? '14px' : '16px';
+          messageEl.style.lineHeight = '1.5';
+          messageEl.style.padding = '0 5px';
+          
+          // Construir la notificación
+          notification.appendChild(icon);
+          notification.appendChild(titleEl);
+          notification.appendChild(messageEl);
+          
+          // Eliminar cualquier notificación anterior si existe
+          const existingNotification = document.querySelector('.app-notification');
+          if (existingNotification) {
+            existingNotification.remove();
+          }
+          
+          // Agregar clase para identificación
+          notification.classList.add('app-notification');
+          
+          // Añadir al DOM
+          document.body.appendChild(notification);
+          
+          // Fix para iOS: forzar reflow
+          void notification.offsetWidth;
+          
+          // Animar entrada
+          setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translate(-50%, -50%) scale(1)';
+            notification.style.webkitTransform = 'translate(-50%, -50%) scale(1)';
+          }, 10);
+          
+          // Animar salida después de 4 segundos
+          setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translate(-50%, -50%) scale(0.9)';
+            notification.style.webkitTransform = 'translate(-50%, -50%) scale(0.9)';
+            
+            // Eliminar del DOM después de la animación
+            setTimeout(() => {
+              notification.remove();
+            }, 300);
+          }, 4000);
+        }
+        
+        // Optimizaciones para dispositivos móviles
+        if (isMobile) {
+          // Mejorar rendimiento en eventos táctiles
+          document.addEventListener('touchstart', function() {}, {passive: true});
+          
+          // Arreglar problemas de enfoque doble en iOS
+          document.querySelectorAll('input, button').forEach(el => {
+            el.addEventListener('touchend', function(e) {
+              e.preventDefault();
+              this.focus();
+            });
+          });
+        }
+      });
+    </script>
+    <!-- Script para partículas de fondo -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Detectar si es móvil para optimizar el rendimiento
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const particleCount = isMobile ? 30 : 80;
+    const particleSpeed = isMobile ? 0.5 : 1;
+    
+    // Cargar el script de particles.js
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+    script.onload = function() {
+      // Configurar las partículas una vez cargado el script
+      particlesJS('particles-js', {
+        "particles": {
+          "number": {
+            "value": particleCount,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": "#ffffff"
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            }
+          },
+          "opacity": {
+            "value": 0.08,
+            "random": true,
+            "anim": {
+              "enable": true,
+              "speed": 1,
+              "opacity_min": 0.03,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 3,
+            "random": true,
+            "anim": {
+              "enable": true,
+              "speed": 2,
+              "size_min": 0.1,
+              "sync": false
+            }
+          },
+          "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#ffffff",
+            "opacity": 0.08,
+            "width": 1
+          },
+          "move": {
+            "enable": true,
+            "speed": particleSpeed,
+            "direction": "none",
+            "random": true,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false
+          }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": {
+              "enable": true,
+              "mode": "grab"
+            },
+            "onclick": {
+              "enable": true,
+              "mode": "push"
+            },
+            "resize": true
+          },
+          "modes": {
+            "grab": {
+              "distance": 140,
+              "line_linked": {
+                "opacity": 0.3
+              }
+            },
+            "push": {
+              "particles_nb": 4
+            }
+          }
+        },
+        "retina_detect": true
+      });
+    };
+    document.body.appendChild(script);
+  });
+</script>
+  </body>
+</html>
